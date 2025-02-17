@@ -5,7 +5,7 @@ from omdet.modeling.language_backbone.clip.models import clip as clip
 
 @registry.LANGUAGE_BACKBONES.register("clip")
 def build_clip_backbone(cfg):
-    model, _ = clip.load("resources/ViT-B-16.pt", device=torch.device(cfg.MODEL.DEVICE), jit=False)
+    model, _ = clip.load(cfg.MODEL.LANGUAGE_BACKBONE.MODEL_PATH, device=torch.device(cfg.MODEL.DEVICE), jit=False)
     model.visual = None # delete the vision part
     model.logit_scale = None
     return model
